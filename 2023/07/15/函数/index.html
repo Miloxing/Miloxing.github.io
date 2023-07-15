@@ -16,25 +16,25 @@
   <meta name="author" content="Milo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="变量变量的声明单变量声明声明变量使用var关键字  指定变量类型不赋值var v_name v_type 根据值自行判断变量类型var v_name &#x3D; value 省略var, 使用 :&#x3D;v_name :&#x3D; value  多变量声明123456789&#x2F;&#x2F; 1var x,y intvar ( &#x2F;&#x2F; 这种写法一般用于全局变量    a int    b bool)var c,d int &#x3D;">
+    <meta name="description" content="函数返回值Go函数可以返回多个值 123456789101112131415package mainimport &quot;fmt&quot;func swap(x, y string) (string, string) &amp;#123;   return y, x&amp;#125;func main() &amp;#123;   a, b :&#x3D; swap(&quot;Mahesh&quot;, &quot;Ku">
 <meta property="og:type" content="article">
-<meta property="og:title" content="变量与常量">
-<meta property="og:url" content="http://example.com/2023/07/13/%E5%8F%98%E9%87%8F%E4%B8%8E%E5%B8%B8%E9%87%8F/index.html">
+<meta property="og:title" content="函数">
+<meta property="og:url" content="http://example.com/2023/07/15/%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="HappyZebra">
-<meta property="og:description" content="变量变量的声明单变量声明声明变量使用var关键字  指定变量类型不赋值var v_name v_type 根据值自行判断变量类型var v_name &#x3D; value 省略var, 使用 :&#x3D;v_name :&#x3D; value  多变量声明123456789&#x2F;&#x2F; 1var x,y intvar ( &#x2F;&#x2F; 这种写法一般用于全局变量    a int    b bool)var c,d int &#x3D;">
+<meta property="og:description" content="函数返回值Go函数可以返回多个值 123456789101112131415package mainimport &quot;fmt&quot;func swap(x, y string) (string, string) &amp;#123;   return y, x&amp;#125;func main() &amp;#123;   a, b :&#x3D; swap(&quot;Mahesh&quot;, &quot;Ku">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-07-13T14:52:52.000Z">
-<meta property="article:modified_time" content="2023-07-15T15:32:21.018Z">
+<meta property="og:image" content="http://example.com/%E5%87%BD%E6%95%B0/image.png">
+<meta property="article:published_time" content="2023-07-15T07:40:07.000Z">
+<meta property="article:modified_time" content="2023-07-15T16:24:16.313Z">
 <meta property="article:author" content="Milo">
 <meta property="article:tag" content="语法">
-<meta property="article:tag" content="变量">
-<meta property="article:tag" content="常量">
-<meta property="article:tag" content="iota">
+<meta property="article:tag" content="函数">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/%E5%87%BD%E6%95%B0/image.png">
   
   
   
-  <title>变量与常量 - HappyZebra</title>
+  <title>函数 - HappyZebra</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -229,7 +229,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="变量与常量"></span>
+            <span id="subtitle" data-typed-text="函数"></span>
           
         </div>
 
@@ -240,8 +240,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-13 22:52" pubdate>
-          2023年7月13日 晚上
+        <time datetime="2023-07-15 15:40" pubdate>
+          2023年7月15日 下午
         </time>
       </span>
     
@@ -252,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          575 字
+          1.1k 字
         
       </span>
     
@@ -263,7 +263,7 @@
         
         
         
-          5 分钟
+          10 分钟
         
       </span>
     
@@ -308,29 +308,24 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">变量与常量</h1>
+            <h1 id="seo-header">函数</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><h2 id="变量的声明"><a href="#变量的声明" class="headerlink" title="变量的声明"></a>变量的声明</h2><h3 id="单变量声明"><a href="#单变量声明" class="headerlink" title="单变量声明"></a>单变量声明</h3><p>声明变量使用var关键字</p>
-<ol>
-<li>指定变量类型不赋值<br><code>var v_name v_type</code></li>
-<li>根据值自行判断变量类型<br><code>var v_name = value</code></li>
-<li>省略var, 使用 :&#x3D;<br><code>v_name := value</code></li>
-</ol>
-<h3 id="多变量声明"><a href="#多变量声明" class="headerlink" title="多变量声明"></a>多变量声明</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-comment">// 1</span><br><span class="hljs-keyword">var</span> x,y <span class="hljs-type">int</span><br><span class="hljs-keyword">var</span> ( <span class="hljs-comment">// 这种写法一般用于全局变量</span><br>    a <span class="hljs-type">int</span><br>    b <span class="hljs-type">bool</span><br>)<br><span class="hljs-keyword">var</span> c,d <span class="hljs-type">int</span> = <span class="hljs-number">1</span>, <span class="hljs-number">2</span><br><span class="hljs-comment">// 2</span><br><span class="hljs-keyword">var</span> e, f = <span class="hljs-number">123</span>, <span class="hljs-string">&quot;str&quot;</span><br></code></pre></td></tr></table></figure>
+                <h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><p>Go函数可以返回多个值</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span><br><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">swap</span><span class="hljs-params">(x, y <span class="hljs-type">string</span>)</span></span> (<span class="hljs-type">string</span>, <span class="hljs-type">string</span>) &#123;<br>   <span class="hljs-keyword">return</span> y, x<br>&#125;<br><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>   a, b := swap(<span class="hljs-string">&quot;Mahesh&quot;</span>, <span class="hljs-string">&quot;Kumar&quot;</span>)<br>   fmt.Println(a, b)<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>不带声明格式的只能在函数体内声明<br><code>g, h := 123, &quot;在函数体内使用&quot;</code></p>
-<h1 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h1><p>. 常量不会被修改<br>. 是一个简单值的标识符，数据类型只可以是布尔型、数字型（整数型、浮点型和复数）和字符串型。</p>
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">const</span> identifier [<span class="hljs-keyword">type</span>] = value<br></code></pre></td></tr></table></figure>
-<p>如果省略类型[type]，编译器将根据变量的值自动判断类型（隐式类型定义）</p>
-<p>常量可以用作枚举</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">const</span> (<br>    Unknown = <span class="hljs-number">0</span><br>    Female = <span class="hljs-number">1</span><br>    Male = <span class="hljs-number">2</span><br>)<br></code></pre></td></tr></table></figure>
+<h2 id="init函数与import"><a href="#init函数与import" class="headerlink" title="init函数与import"></a>init函数与import</h2><p>init函数可以在任何package中，可以在一个package中出现零次或多次（为了可读性和维护，最好只写一个init）</p>
+<h2 id="main函数"><a href="#main函数" class="headerlink" title="main函数"></a>main函数</h2><p>main 只能在package main中，package main中必须有main函数</p>
+<h2 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h2><p>Go程序自动调用init()和main()，不需要手动调用。程序始于main包，如果在main中调用了其他包，那么在编译的时候依次导入。一个包被多个包导入，那么它将只导入一次。<br>一个包被导入后，先导入它导入的其他包，把这些包里的常量和变量进行初始化，然后执行init函数（如果有）。所有导入的包加载完毕后开始对main中的常量变量进行初始化，然后执行init函数（如果有），最后执行main函数。<br><img src="/%E5%87%BD%E6%95%B0/image.png" srcset="/img/loading.gif" lazyload alt="执行过程"></p>
+<h2 id="函数参数"><a href="#函数参数" class="headerlink" title="函数参数"></a>函数参数</h2><p>Go函数传递参数分为值传递和引用传递（指针传递）</p>
+<p>值传递在调用函数时复制一份实际参数传递到函数中，不会影响到实际参数</p>
+<p>引用传递使用取地址符&amp;将实际参数的地址传递给函数，函数的参数类型前加*号表示参数是指针。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span><br><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>   <span class="hljs-comment">/* 定义局部变量 */</span><br>   <span class="hljs-keyword">var</span> a <span class="hljs-type">int</span> = <span class="hljs-number">100</span><br>   <span class="hljs-keyword">var</span> b <span class="hljs-type">int</span>= <span class="hljs-number">200</span><br><br><br>   fmt.Printf(<span class="hljs-string">&quot;交换前，a 的值 : %d\n&quot;</span>, a )<br>   fmt.Printf(<span class="hljs-string">&quot;交换前，b 的值 : %d\n&quot;</span>, b )<br><br><br>   <span class="hljs-comment">/* 调用 swap() 函数</span><br><span class="hljs-comment">   * &amp;a 指向 a 指针，a 变量的地址</span><br><span class="hljs-comment">   * &amp;b 指向 b 指针，b 变量的地址</span><br><span class="hljs-comment">   */</span><br>   swap(&amp;a, &amp;b)<br><br><br>   fmt.Printf(<span class="hljs-string">&quot;交换后，a 的值 : %d\n&quot;</span>, a )<br>   fmt.Printf(<span class="hljs-string">&quot;交换后，b 的值 : %d\n&quot;</span>, b )<br>&#125;<br><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">swap</span><span class="hljs-params">(x *<span class="hljs-type">int</span>, y *<span class="hljs-type">int</span>)</span></span> &#123;<br>   <span class="hljs-keyword">var</span> temp <span class="hljs-type">int</span><br>   temp = *x    <span class="hljs-comment">/* 保存 x 地址上的值 */</span><br>   *x = *y      <span class="hljs-comment">/* 将 y 值赋给 x */</span><br>   *y = temp    <span class="hljs-comment">/* 将 temp 值赋给 y */</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>常量可以用len(), cap(), unsafe.Sizeof()常量计算表达式的值。常量表达式中的函数必须是内置函数。</p>
-<h2 id="iota"><a href="#iota" class="headerlink" title="iota"></a>iota</h2><p>如果定义的常量只是为了彼此区分，它的值不那么重要，比如不同常量的值定义成0, 1, 2 …，可以使用iota自增长简化常量增长数字的定义。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">const</span> (<br>    Red = <span class="hljs-literal">iota</span> <span class="hljs-comment">// 0</span><br>    Blue       <span class="hljs-comment">// 1</span><br>    Yellow     <span class="hljs-comment">// 2</span><br>)<br></code></pre></td></tr></table></figure>
+
+
                 
               </div>
             
@@ -372,11 +367,7 @@
       
         <a href="/tags/%E8%AF%AD%E6%B3%95/" class="print-no-link">#语法</a>
       
-        <a href="/tags/%E5%8F%98%E9%87%8F/" class="print-no-link">#变量</a>
-      
-        <a href="/tags/%E5%B8%B8%E9%87%8F/" class="print-no-link">#常量</a>
-      
-        <a href="/tags/iota/" class="print-no-link">#iota</a>
+        <a href="/tags/%E5%87%BD%E6%95%B0/" class="print-no-link">#函数</a>
       
     </div>
   
@@ -388,8 +379,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>变量与常量</div>
-      <div>http://example.com/2023/07/13/变量与常量/</div>
+      <div>函数</div>
+      <div>http://example.com/2023/07/15/函数/</div>
     </div>
     <div class="license-meta">
       
@@ -401,7 +392,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年7月13日</div>
+          <div>2023年7月15日</div>
         </div>
       
       
@@ -433,15 +424,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/15/%E5%87%BD%E6%95%B0/" title="函数">
+                      <a href="/2023/07/15/defer/" title="defer">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">函数</span>
+                        <span class="hidden-mobile">defer</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2023/07/13/%E5%8F%98%E9%87%8F%E4%B8%8E%E5%B8%B8%E9%87%8F/" title="变量与常量">
+                        <span class="hidden-mobile">变量与常量</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

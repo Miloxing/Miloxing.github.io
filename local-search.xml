@@ -4,6 +4,95 @@
   
   
   <entry>
+    <title>slice和map</title>
+    <link href="/2023/07/15/slice%E5%92%8Cmap/"/>
+    <url>/2023/07/15/slice%E5%92%8Cmap/</url>
+    
+    <content type="html"><![CDATA[<h1 id="slice"><a href="#slice" class="headerlink" title="slice"></a>slice</h1><p>未完待续</p><h1 id="map"><a href="#map" class="headerlink" title="map"></a>map</h1>]]></content>
+    
+    
+    <categories>
+      
+      <category>Golang</category>
+      
+      <category>笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>语法</tag>
+      
+      <tag>slice</tag>
+      
+      <tag>map</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>defer</title>
+    <link href="/2023/07/15/defer/"/>
+    <url>/2023/07/15/defer/</url>
+    
+    <content type="html"><![CDATA[<h1 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h1><p>defer语句在函数运行结束之后才运行，被defer语句调用的函数称为延迟函数<br>defer压栈运行，多个defer以后进先出的顺序执行。</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Demo</span><span class="hljs-params">()</span></span>&#123;<br><span class="hljs-keyword">defer</span> fmt.Println(<span class="hljs-string">&quot;1&quot;</span>)<br><span class="hljs-keyword">defer</span> fmt.Println(<span class="hljs-string">&quot;2&quot;</span>)<br><span class="hljs-keyword">defer</span> fmt.Println(<span class="hljs-string">&quot;3&quot;</span>)<br><span class="hljs-keyword">defer</span> fmt.Println(<span class="hljs-string">&quot;4&quot;</span>)<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>Demo()<br>&#125;<br></code></pre></td></tr></table></figure><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">4<br>3<br>2<br>1<br></code></pre></td></tr></table></figure><p>defer作用：</p><p>● 释放占用的资源<br>● 捕捉处理异常<br>● 输出日志</p><h2 id="recover错误拦截"><a href="#recover错误拦截" class="headerlink" title="recover错误拦截"></a>recover错误拦截</h2><p>运行时panic异常一旦被引发会导致程序崩溃。<br>Go使用recover拦截panic的内建函数recover，可以让程序从panic的状态恢复并重新取得流程控制权。</p><p>recover只在defer调用的函数中有效</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Demo</span><span class="hljs-params">(i <span class="hljs-type">int</span>)</span></span> &#123;<br><span class="hljs-comment">//定义10个元素的数组</span><br><span class="hljs-keyword">var</span> arr [<span class="hljs-number">10</span>]<span class="hljs-type">int</span><br><span class="hljs-comment">//错误拦截要在产生错误前设置</span><br><span class="hljs-keyword">defer</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;<br><span class="hljs-comment">//设置recover拦截错误信息</span><br>err := <span class="hljs-built_in">recover</span>()<br><span class="hljs-comment">//产生panic异常  打印错误信息</span><br><span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;<br>fmt.Println(err)<br>&#125;<br>&#125;()<br><span class="hljs-comment">//根据函数参数为数组元素赋值</span><br><span class="hljs-comment">//如果i的值超过数组下标 会报错误：数组下标越界</span><br>arr[i] = <span class="hljs-number">10</span><br><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>Demo(<span class="hljs-number">10</span>)<br><span class="hljs-comment">//产生错误后 程序继续</span><br>fmt.Println(<span class="hljs-string">&quot;程序继续执行...&quot;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Golang</category>
+      
+      <category>笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>语法</tag>
+      
+      <tag>defer</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>函数</title>
+    <link href="/2023/07/15/%E5%87%BD%E6%95%B0/"/>
+    <url>/2023/07/15/%E5%87%BD%E6%95%B0/</url>
+    
+    <content type="html"><![CDATA[<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><p>Go函数可以返回多个值</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span><br><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">swap</span><span class="hljs-params">(x, y <span class="hljs-type">string</span>)</span></span> (<span class="hljs-type">string</span>, <span class="hljs-type">string</span>) &#123;<br>   <span class="hljs-keyword">return</span> y, x<br>&#125;<br><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>   a, b := swap(<span class="hljs-string">&quot;Mahesh&quot;</span>, <span class="hljs-string">&quot;Kumar&quot;</span>)<br>   fmt.Println(a, b)<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="init函数与import"><a href="#init函数与import" class="headerlink" title="init函数与import"></a>init函数与import</h2><p>init函数可以在任何package中，可以在一个package中出现零次或多次（为了可读性和维护，最好只写一个init）</p><h2 id="main函数"><a href="#main函数" class="headerlink" title="main函数"></a>main函数</h2><p>main 只能在package main中，package main中必须有main函数</p><h2 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h2><p>Go程序自动调用init()和main()，不需要手动调用。程序始于main包，如果在main中调用了其他包，那么在编译的时候依次导入。一个包被多个包导入，那么它将只导入一次。<br>一个包被导入后，先导入它导入的其他包，把这些包里的常量和变量进行初始化，然后执行init函数（如果有）。所有导入的包加载完毕后开始对main中的常量变量进行初始化，然后执行init函数（如果有），最后执行main函数。<br><img src="/%E5%87%BD%E6%95%B0/image.png" alt="执行过程"></p><h2 id="函数参数"><a href="#函数参数" class="headerlink" title="函数参数"></a>函数参数</h2><p>Go函数传递参数分为值传递和引用传递（指针传递）</p><p>值传递在调用函数时复制一份实际参数传递到函数中，不会影响到实际参数</p><p>引用传递使用取地址符&amp;将实际参数的地址传递给函数，函数的参数类型前加*号表示参数是指针。</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span><br><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>   <span class="hljs-comment">/* 定义局部变量 */</span><br>   <span class="hljs-keyword">var</span> a <span class="hljs-type">int</span> = <span class="hljs-number">100</span><br>   <span class="hljs-keyword">var</span> b <span class="hljs-type">int</span>= <span class="hljs-number">200</span><br><br><br>   fmt.Printf(<span class="hljs-string">&quot;交换前，a 的值 : %d\n&quot;</span>, a )<br>   fmt.Printf(<span class="hljs-string">&quot;交换前，b 的值 : %d\n&quot;</span>, b )<br><br><br>   <span class="hljs-comment">/* 调用 swap() 函数</span><br><span class="hljs-comment">   * &amp;a 指向 a 指针，a 变量的地址</span><br><span class="hljs-comment">   * &amp;b 指向 b 指针，b 变量的地址</span><br><span class="hljs-comment">   */</span><br>   swap(&amp;a, &amp;b)<br><br><br>   fmt.Printf(<span class="hljs-string">&quot;交换后，a 的值 : %d\n&quot;</span>, a )<br>   fmt.Printf(<span class="hljs-string">&quot;交换后，b 的值 : %d\n&quot;</span>, b )<br>&#125;<br><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">swap</span><span class="hljs-params">(x *<span class="hljs-type">int</span>, y *<span class="hljs-type">int</span>)</span></span> &#123;<br>   <span class="hljs-keyword">var</span> temp <span class="hljs-type">int</span><br>   temp = *x    <span class="hljs-comment">/* 保存 x 地址上的值 */</span><br>   *x = *y      <span class="hljs-comment">/* 将 y 值赋给 x */</span><br>   *y = temp    <span class="hljs-comment">/* 将 temp 值赋给 y */</span><br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Golang</category>
+      
+      <category>笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>语法</tag>
+      
+      <tag>函数</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>变量与常量</title>
     <link href="/2023/07/13/%E5%8F%98%E9%87%8F%E4%B8%8E%E5%B8%B8%E9%87%8F/"/>
     <url>/2023/07/13/%E5%8F%98%E9%87%8F%E4%B8%8E%E5%B8%B8%E9%87%8F/</url>
