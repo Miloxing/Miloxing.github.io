@@ -16,24 +16,23 @@
   <meta name="author" content="Milo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="sliceGo切片是对数组的抽象 Go使用var myArr1 [10]int声明的数组是固定数组，长度不可改变，不适用于某些场景。Go提供了内置类型切片（“动态数组”），切片的长度不固定，追加元素超过切片容量后切片的容量会增大。 定义切片声明一个未制定大小的数组就是一个切片，但是没有分配空间 1var identifier []type 使用make()函数在声明的时候分配空间 12345var">
+    <meta name="description" content="结构体标签1234567891011121314151617181920212223242526272829package mainimport (    &quot;fmt&quot;    &quot;reflect&quot;)&#x2F;&#x2F; 结构体标签 为了向别人提供字段的说明type resume struct &amp;#123;    Name string &#96;json:&quot;name&amp;quot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="slice和map">
-<meta property="og:url" content="http://example.com/2023/07/15/slice%E5%92%8Cmap/index.html">
+<meta property="og:title" content="结构体标签">
+<meta property="og:url" content="http://example.com/2023/07/16/%E7%BB%93%E6%9E%84%E4%BD%93%E6%A0%87%E7%AD%BE/index.html">
 <meta property="og:site_name" content="HappyZebra">
-<meta property="og:description" content="sliceGo切片是对数组的抽象 Go使用var myArr1 [10]int声明的数组是固定数组，长度不可改变，不适用于某些场景。Go提供了内置类型切片（“动态数组”），切片的长度不固定，追加元素超过切片容量后切片的容量会增大。 定义切片声明一个未制定大小的数组就是一个切片，但是没有分配空间 1var identifier []type 使用make()函数在声明的时候分配空间 12345var">
+<meta property="og:description" content="结构体标签1234567891011121314151617181920212223242526272829package mainimport (    &quot;fmt&quot;    &quot;reflect&quot;)&#x2F;&#x2F; 结构体标签 为了向别人提供字段的说明type resume struct &amp;#123;    Name string &#96;json:&quot;name&amp;quot">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-07-15T08:35:50.000Z">
-<meta property="article:modified_time" content="2023-07-16T12:43:53.732Z">
+<meta property="article:published_time" content="2023-07-16T06:51:24.000Z">
+<meta property="article:modified_time" content="2023-07-16T14:55:57.192Z">
 <meta property="article:author" content="Milo">
 <meta property="article:tag" content="语法">
-<meta property="article:tag" content="slice">
-<meta property="article:tag" content="map">
+<meta property="article:tag" content="结构体标签">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>slice和map - HappyZebra</title>
+  <title>结构体标签 - HappyZebra</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -228,7 +227,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="slice和map"></span>
+            <span id="subtitle" data-typed-text="结构体标签"></span>
           
         </div>
 
@@ -239,8 +238,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-15 16:35" pubdate>
-          2023年7月15日 下午
+        <time datetime="2023-07-16 14:51" pubdate>
+          2023年7月16日 下午
         </time>
       </span>
     
@@ -251,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k 字
+          1.5k 字
         
       </span>
     
@@ -262,7 +261,7 @@
         
         
         
-          15 分钟
+          13 分钟
         
       </span>
     
@@ -307,36 +306,15 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">slice和map</h1>
+            <h1 id="seo-header">结构体标签</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="slice"><a href="#slice" class="headerlink" title="slice"></a>slice</h1><p>Go切片是对数组的抽象</p>
-<p>Go使用<code>var myArr1 [10]int</code>声明的数组是固定数组，长度不可改变，不适用于某些场景。Go提供了内置类型切片（“动态数组”），切片的长度不固定，追加元素超过切片容量后切片的容量会增大。</p>
-<h2 id="定义切片"><a href="#定义切片" class="headerlink" title="定义切片"></a>定义切片</h2><p>声明一个未制定大小的数组就是一个切片，但是没有分配空间</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">var</span> identifier []<span class="hljs-keyword">type</span><br></code></pre></td></tr></table></figure>
-<p>使用make()函数在声明的时候分配空间</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">var</span> slice1 []<span class="hljs-keyword">type</span> = <span class="hljs-built_in">make</span>([]<span class="hljs-keyword">type</span>, <span class="hljs-built_in">len</span>)<br><br>也可以简写为<br><br>slice1 := <span class="hljs-built_in">make</span>([]<span class="hljs-keyword">type</span>, <span class="hljs-built_in">len</span>)<br></code></pre></td></tr></table></figure>
-<p>可选参数capacity制定切片容量<code>make([]T, length, capacity)</code>不指定capacity时len&#x3D;cap  <br>len是数组的长度，也是切片的初始长度。</p>
-<h2 id="切片初始化"><a href="#切片初始化" class="headerlink" title="切片初始化"></a>切片初始化</h2><p>直接初始化，值为1，2，3，len&#x3D;cap&#x3D;3</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go">s := []<span class="hljs-type">int</span> &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>&#125;<br></code></pre></td></tr></table></figure>
+                <h1 id="结构体标签"><a href="#结构体标签" class="headerlink" title="结构体标签"></a>结构体标签</h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> (<br>    <span class="hljs-string">&quot;fmt&quot;</span><br>    <span class="hljs-string">&quot;reflect&quot;</span><br>)<br><br><span class="hljs-comment">// 结构体标签 为了向别人提供字段的说明</span><br><span class="hljs-keyword">type</span> resume <span class="hljs-keyword">struct</span> &#123;<br>    Name <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;name&quot; doc:&quot;我的名字&quot;`</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">findDoc</span><span class="hljs-params">(stru <span class="hljs-keyword">interface</span>&#123;&#125;)</span></span> <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span> &#123;<br>    t := reflect.TypeOf(stru).Elem()<br>    doc := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span>)<br><br>    <span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; t.NumField(); i++ &#123;<br>        doc[t.Field(i).Tag.Get(<span class="hljs-string">&quot;json&quot;</span>)] = t.Field(i).Tag.Get(<span class="hljs-string">&quot;doc&quot;</span>)<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> doc<br><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">var</span> stru resume<br>    doc := findDoc(&amp;stru)<br>    fmt.Printf(<span class="hljs-string">&quot;name字段为：%s\n&quot;</span>, doc[<span class="hljs-string">&quot;name&quot;</span>])<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>根据其他数组或切片来初始化</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-comment">// startIndex/endIndex可选</span><br>s1 := s[startIndex:endIndex] <br></code></pre></td></tr></table></figure>
-
-<h2 id="len-和cap-函数"><a href="#len-和cap-函数" class="headerlink" title="len()和cap()函数"></a>len()和cap()函数</h2><p>可以使用len()测量切片目前的长度，使用cap()测量切片目前的最大容量。</p>
-<h2 id="空切片"><a href="#空切片" class="headerlink" title="空切片"></a>空切片</h2><p>未初始化的切片默认等于nil，长度和容量为0</p>
-<h2 id="append-函数-和-copy-函数"><a href="#append-函数-和-copy-函数" class="headerlink" title="append()函数 和 copy() 函数"></a>append()函数 和 copy() 函数</h2><p>append()向切片（包括空切片）中追加元素，copy()复制原来的切片到新切片</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span><br><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>   <span class="hljs-keyword">var</span> numbers []<span class="hljs-type">int</span><br>   printSlice(numbers)<br><br><br>   <span class="hljs-comment">/* 允许追加空切片 */</span><br>   numbers = <span class="hljs-built_in">append</span>(numbers, <span class="hljs-number">0</span>)<br>   printSlice(numbers)<br><br><br>   <span class="hljs-comment">/* 向切片添加一个元素 */</span><br>   numbers = <span class="hljs-built_in">append</span>(numbers, <span class="hljs-number">1</span>)<br>   printSlice(numbers)<br><br><br>   <span class="hljs-comment">/* 同时添加多个元素 */</span><br>   numbers = <span class="hljs-built_in">append</span>(numbers, <span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>)<br>   printSlice(numbers)<br><br><br>   <span class="hljs-comment">/* 创建切片 numbers1 是之前切片的两倍容量*/</span><br>   numbers1 := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, <span class="hljs-built_in">len</span>(numbers), (<span class="hljs-built_in">cap</span>(numbers))*<span class="hljs-number">2</span>)<br><br><br>   <span class="hljs-comment">/* 拷贝 numbers 的内容到 numbers1 */</span><br>   <span class="hljs-built_in">copy</span>(numbers1,numbers)<br>   printSlice(numbers1)   <br>&#125;<br><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">printSlice</span><span class="hljs-params">(x []<span class="hljs-type">int</span>)</span></span>&#123;<br>   fmt.Printf(<span class="hljs-string">&quot;len=%d cap=%d slice=%v\n&quot;</span>,<span class="hljs-built_in">len</span>(x),<span class="hljs-built_in">cap</span>(x),x)<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>输出结果</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">len=0 cap=0 slice=[]<br>len=1 cap=1 slice=[0]<br>len=2 cap=2 slice=[0 1]<br>len=5 cap=6 slice=[0 1 2 3 4]<br>len=5 cap=12 slice=[0 1 2 3 4]<br></code></pre></td></tr></table></figure>
-<p>思考：为什么同时添加2，3，4后，len从2增加到了5，cap增加到了6？</p>
-<h1 id="map"><a href="#map" class="headerlink" title="map"></a>map</h1><p>map和slice类似，只不过数据结构不同</p>
-<h2 id="声明map"><a href="#声明map" class="headerlink" title="声明map"></a>声明map</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-comment">//第一种</span><br><span class="hljs-keyword">var</span> test1 <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span><br><span class="hljs-comment">// 使用map前需要先make分配数据空间</span><br>test1 = <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span>, <span class="hljs-number">10</span>)<br>test1[<span class="hljs-string">&quot;one&quot;</span>] = <span class="hljs-string">&quot;php&quot;</span><br>test1[<span class="hljs-string">&quot;two&quot;</span>] = <span class="hljs-string">&quot;golang&quot;</span><br><br><span class="hljs-comment">// 第二种</span><br>test2 := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span>)<br>test1[<span class="hljs-string">&quot;one&quot;</span>] = <span class="hljs-string">&quot;php&quot;</span><br>test1[<span class="hljs-string">&quot;two&quot;</span>] = <span class="hljs-string">&quot;golang&quot;</span><br><br><span class="hljs-comment">// 第三种</span><br>test3 := <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span>&#123;<br>    <span class="hljs-string">&quot;one&quot;</span>: <span class="hljs-string">&quot;php&quot;</span>,<br>    <span class="hljs-string">&quot;two&quot;</span>: <span class="hljs-string">&quot;golang&quot;</span>,<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
+<p>json示例</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> (<br>	<span class="hljs-string">&quot;encoding/json&quot;</span><br>	<span class="hljs-string">&quot;fmt&quot;</span><br>)<br><br><span class="hljs-keyword">type</span> Movie <span class="hljs-keyword">struct</span> &#123;<br>	Title  <span class="hljs-type">string</span>   <span class="hljs-string">`json:&quot;title&quot;`</span><br>	Year   <span class="hljs-type">int</span>      <span class="hljs-string">`json:&quot;year&quot;`</span><br>	Price  <span class="hljs-type">int</span>      <span class="hljs-string">`json:&quot;rmb&quot;`</span><br>	Actors []<span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;actors&quot;`</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	movie := Movie&#123;<span class="hljs-string">&quot;喜剧之王&quot;</span>, <span class="hljs-number">2000</span>, <span class="hljs-number">10</span>, []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;zhouxingchi&quot;</span>, <span class="hljs-string">&quot;zhangbozhi&quot;</span>&#125;&#125;<br>	<span class="hljs-comment">//编码的过程 结构体--&gt; json</span><br>	jsonStr, err := json.Marshal(movie)<br>	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;<br>		fmt.Println(<span class="hljs-string">&quot;json marshal error&quot;</span>, err)<br>		<span class="hljs-keyword">return</span><br>	&#125;<br>	fmt.Printf(<span class="hljs-string">&quot;jsonStr = %s\n&quot;</span>, jsonStr)<br><br>	<span class="hljs-comment">//解码的过程 jsonStr --&gt; 结构体</span><br>	<span class="hljs-comment">//jsonStr = &#123;&quot;title&quot;:&quot;喜剧之王&quot;,&quot;year&quot;:2000,&quot;rmb&quot;:10,&quot;actors&quot;:[&quot;zhouxingchi&quot;,&quot;zhangbozhi&quot;]&#125;</span><br>	myMovie := Movie&#123;&#125;<br>	err = json.Unmarshal(jsonStr, &amp;myMovie)<br>	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;<br>		fmt.Println(<span class="hljs-string">&quot;json unmarshal error&quot;</span>, err)<br>		<span class="hljs-keyword">return</span><br>	&#125;<br>	fmt.Printf(<span class="hljs-string">&quot;myMovie=%v\n&quot;</span>, myMovie)<br>&#125;<br><br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -378,9 +356,7 @@
       
         <a href="/tags/%E8%AF%AD%E6%B3%95/" class="print-no-link">#语法</a>
       
-        <a href="/tags/slice/" class="print-no-link">#slice</a>
-      
-        <a href="/tags/map/" class="print-no-link">#map</a>
+        <a href="/tags/%E7%BB%93%E6%9E%84%E4%BD%93%E6%A0%87%E7%AD%BE/" class="print-no-link">#结构体标签</a>
       
     </div>
   
@@ -392,8 +368,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>slice和map</div>
-      <div>http://example.com/2023/07/15/slice和map/</div>
+      <div>结构体标签</div>
+      <div>http://example.com/2023/07/16/结构体标签/</div>
     </div>
     <div class="license-meta">
       
@@ -405,7 +381,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年7月15日</div>
+          <div>2023年7月16日</div>
         </div>
       
       
@@ -437,18 +413,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/16/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%89%B9%E5%BE%81/" title="面向对象特征">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">面向对象特征</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/07/15/defer/" title="defer">
-                        <span class="hidden-mobile">defer</span>
+                      <a href="/2023/07/16/%E5%8F%8D%E5%B0%84reflect/" title="反射reflect">
+                        <span class="hidden-mobile">反射reflect</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
